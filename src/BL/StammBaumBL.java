@@ -52,7 +52,7 @@ public class StammBaumBL
         //auskommentierte Zeilen werfen NullPointException
 
         addPerson(person);
-        if(person == actualPerson) {
+        if(person.getEquivalent() != actualPerson.getEquivalent()) {
             person.setRelatioan(actualPerson.getEquivalent(), relationType);
             actualPerson.setRelatioan(person.getEquivalent(), relationType);
         }

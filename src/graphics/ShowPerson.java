@@ -5,7 +5,7 @@
  */
 package graphics;
 
-import StammbaumBL.TableModel;
+import BL.TableModel;
 import java.awt.Dimension;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
@@ -13,7 +13,7 @@ import javax.swing.JTable;
 
 public class ShowPerson extends JDialog
 {
-    TableModel tm = new TableModel();
+    TableModel tm;
     private JTable tablePeronen;
     public ShowPerson(TableModel tm)
     {

@@ -5,6 +5,7 @@
  */
 package graphics;
 
+import BL.StammBaumBL;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,6 +15,8 @@ import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,24 +29,25 @@ import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import family.person.Person;
 import BL.TableModel;
+import family.person.RelationType;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 public class AddingDLG extends JDialog
-{
-    
-    
-    private TableModel tm;
-    public AddingDLG(TableModel tm)
+{  
+    public AddingDLG(StammBaumBL sbl)
     {
-        this.tm = tm;
+        this.sbl = sbl;
         this.setTitle("Hinzufügen");
         this.setLocationRelativeTo(null);
         this.setPreferredSize(new Dimension(300,150));
         initComponents();
         this.pack();
+        this.setVisible(true);
     }
-
+    private StammBaumBL sbl;
     private void initComponents()
     {
         Container cont=this.getContentPane();
@@ -104,17 +108,25 @@ public class AddingDLG extends JDialog
         String type = (String)cbWaehle.getSelectedItem();
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
        
-         
-        Person p = new Person(tfFirstname.getText(), tfLastname.getText(), (Date)dateOfBirth.getValue(), (Date)dateOfDeath.getValue());
-        tm.add(p);
-        
+         System.out.println(type);
+         p = new Person(tfFirstname.getText(), tfLastname.getText(), (Date)dateOfBirth.getValue(), (Date)dateOfDeath.getValue());   
+         sbl.addPerson(getP(), RelationType.Eltern);
+
         this.setVisible(false);
     }
-
+    private Person p;
     private void onExit(ActionEvent e) 
     {
         this.setVisible(false);
     }
+
+    public Person getP() 
+    {
+        System.out.println("Adding");
+        return p;
+    }
+
+    
     
 }
 

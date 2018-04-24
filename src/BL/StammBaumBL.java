@@ -44,10 +44,11 @@ public class StammBaumBL
 
     public void addPerson(Person person, RelationType relationType)
     {
+        //auskommentierte Zeilen werfen NullPointException
 
         family.addPerson(person);
-        person.setRelatioan(actualPerson.getEquivalent(),relationType);
-        actualPerson.setRelatioan(person.getEquivalent(),relationType);
+//        person.setRelatioan(actualPerson.getEquivalent(),relationType);
+//        actualPerson.setRelatioan(person.getEquivalent(),relationType);
         tm.add(person);
     }
 

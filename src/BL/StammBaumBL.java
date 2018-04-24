@@ -36,8 +36,13 @@ public class StammBaumBL
 
     }
 
-    public void creatNewPerson(Person person)
+    public void addPerson(Person person)
     {
+        if(actualPerson == null)
+        {
+            actualPerson = person;
+        }
+
         family.addPerson(person);
         tm.add(person);
     }
@@ -46,10 +51,11 @@ public class StammBaumBL
     {
         //auskommentierte Zeilen werfen NullPointException
 
-        family.addPerson(person);
-//        person.setRelatioan(actualPerson.getEquivalent(),relationType);
-//        actualPerson.setRelatioan(person.getEquivalent(),relationType);
-        tm.add(person);
+        addPerson(person);
+        if(person == actualPerson) {
+            person.setRelatioan(actualPerson.getEquivalent(), relationType);
+            actualPerson.setRelatioan(person.getEquivalent(), relationType);
+        }
     }
 
     public void setNewRelation(int[] personequivalent, RelationType relationType)

@@ -53,6 +53,7 @@ public class TableModel extends AbstractTableModel
     public void add(Person p) 
     {
         list.add(p);
+        listSort(sortSpalte);
         this.fireTableDataChanged();
     }
 

@@ -123,6 +123,7 @@ public class TableModel extends AbstractTableModel
                                                     });
                 break;
         }
+        this.fireTableDataChanged();
     }
 
 

@@ -6,10 +6,8 @@
 package BL;
 
 import family.person.Person;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-;
 import javax.swing.table.AbstractTableModel;
 
 public class TableModel extends AbstractTableModel

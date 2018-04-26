@@ -105,5 +105,12 @@ public class Person
     {
         this.deathDate = deathDate;
     }
+
+    public void setData(String firstName, String lastName, Date birthDate, Date deathDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.deathDate = deathDate;
+    }
 }
 

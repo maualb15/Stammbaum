@@ -118,15 +118,24 @@ private JTextField search = new JTextField();
 
     }
     private JTable tablePersonen = new JTable();
-    private Component onShow() 
+    private JPanel onShow() 
     {
+        JPanel plShow = new JPanel();
+        plShow.setLayout(new BorderLayout(3, 3));
+        String [] sorts = new String[]{"Erstellungsdatum", "Vorname", "Nachname", "Geburtsdatum", "Todesdatum"};
+        cbSort = new JComboBox(sorts);
+        cbSort.addActionListener(e -> onSort());
+        plShow.add(cbSort, BorderLayout.NORTH);
         tm = sbl.getTableModel();
         JScrollPane sp ;
         tablePersonen.setModel(tm);
         sp = new JScrollPane(tablePersonen);
         sp.setViewportView(tablePersonen); 
-        return sp;
+        plShow.add(sp, BorderLayout.CENTER);
+        return plShow;
+        
     }
+    private JComboBox cbSort; 
     private StammBaumBL sbl = new StammBaumBL();
 
     @Override
@@ -150,6 +159,33 @@ private JTextField search = new JTextField();
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    private void onSort() 
+    {
+        int art;
+        String sortArt = (String) cbSort.getSelectedItem();
+        if(sortArt.equals("Erstellungsdatum"))
+        {
+            art = 1;
+        }
+        else if(sortArt.equals("Vorname"))
+        {
+            art = 4;
+        }
+        else if(sortArt.equals("Geburtsdatum"))
+        {
+            art = 2;
+        }
+        else if(sortArt.equals("Todesdatum"))
+        {
+            art = 3;
+        }
+        else
+        {
+            art = 0;
+        }
+        tm.listSort(art);
     }
 
 

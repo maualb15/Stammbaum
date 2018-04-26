@@ -59,8 +59,45 @@ public class TableModel extends AbstractTableModel
 
     public void listSort(int spalte)
     {
+        switch (spalte)
+        {
 
+            case 1:
+                list.sort((Person e1,Person e2)->{if(e1.getEquivalent()[0]-e2.getEquivalent()[0]==0)
+                                                        {
+                                                            return e1.getEquivalent()[1]-e2.getEquivalent()[1];
+                                                        }
+                                                        return e1.getEquivalent()[0]-e2.getEquivalent()[0];
+                                                    });
+                break;
+            case 2:
+                list.sort((Person e1,Person e2)->{if(e1.getBirthDate().compareTo(e2.getBirthDate())==0)
+                                                        {
+                                                            return e1.getLastName().compareTo(e2.getLastName());
+                                                        }
+                                                        return e1.getBirthDate().compareTo(e2.getBirthDate());
+                                                    });
+                break;
+            case 3:
+                list.sort((Person e1,Person e2)->{if(e1.getDeathDate().compareTo(e2.getDeathDate())==0)
+                                                        {
+                                                            return e1.getLastName().compareTo(e2.getLastName());
+                                                        }
+                                                        return e1.getBirthDate().compareTo(e2.getBirthDate());
+                                                    });
+                                                    break;
+            case 0:
+            default:
+                list.sort((Person e1,Person e2)->{if(e1.getLastName().compareTo(e2.getLastName())==0)
+                                                            {
+                                                                return e1.getFirstName().compareTo(e2.getFirstName());
+                                                            }
+                                                            return e1.getLastName().compareTo(e2.getLastName());
+                                                    });
+                break;
+        }
     }
+
 
     public TableModel(ArrayList<Person> persons)
     {

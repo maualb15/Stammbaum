@@ -28,11 +28,13 @@ public class StammbaumGUI extends JFrame implements MouseListener{
         super("Stammbaum");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setPreferredSize(new Dimension(400, 400));
+        this.setPreferredSize(new Dimension(735, 400));
         initComponents();
     }
 private JTextField search = new JTextField();
-    private void initComponents() {
+    private void initComponents() 
+    {
+        //MenuBar
         JMenuBar mbMenu = new JMenuBar();
         JMenu menu = new JMenu("Datei");
         JMenuItem save = new JMenuItem("Speichern");
@@ -50,12 +52,14 @@ private JTextField search = new JTextField();
         menu.add(sep);
         menu.add(exit);
         mbMenu.add(menu);
+        
+        //Container erstellen
         Container cont = this.getContentPane();
         cont.setLayout(new BorderLayout(3, 3));
         
+        //Suchspalte
         search.setVisible(true);
         JPanel plSearch = new JPanel(new BorderLayout(3,3));
-        
         ImageIcon imgLupe = new ImageIcon("src/icon/lupe.png");
         imgLupe.setImage(imgLupe.getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT));
         JLabel lbLupe = new JLabel();
@@ -64,15 +68,22 @@ private JTextField search = new JTextField();
         lbLupe.setIcon(imgLupe);
         plSearch.add(lbLupe, BorderLayout.LINE_START);
         plSearch.add(search, BorderLayout.CENTER);
-      
         
+        //Add
         ImageIcon imgAdd = new ImageIcon("src/icon/plus.png");
         JButton btAdd = new JButton();
         btAdd.setIcon(imgAdd);
         btAdd.addActionListener(e -> onAdd(e));
         this.setJMenuBar(mbMenu);
-        cont.add(plSearch, BorderLayout.NORTH);
-        cont.add(btAdd, BorderLayout.CENTER);
+        
+        //Container befüllen
+        JPanel plAdd = new JPanel();
+        plAdd.setLayout(new BorderLayout(3,3));
+        plAdd.add(plSearch, BorderLayout.NORTH);
+        plAdd.add(btAdd, BorderLayout.CENTER);
+        cont.add(plAdd, BorderLayout.CENTER);
+        cont.add(onShow(), BorderLayout.LINE_END);
+        
         this.pack();
     }
 
@@ -87,26 +98,34 @@ private JTextField search = new JTextField();
     private JButton btHelp = new JButton("Hilfe Tobi hat ka Ahnung");
     private JLabel lbLupe = new JLabel("Das ist eine Lupe");
 
-    private void onAdd(ActionEvent e) {
+    private void onAdd(ActionEvent e) 
+    {
         AddingDLG dlg = new AddingDLG(sbl);
     }
     
-    private void onSave() {
+    private void onSave() 
+    {
 
     }
 
-    private void onLoad() {
+    private void onLoad() 
+    {
 
     }
 
-    private void onExit() {
+    private void onExit() 
+    {
 
     }
-
-    private void onShow() 
+    private JTable tablePersonen = new JTable();
+    private Component onShow() 
     {
         tm = sbl.getTableModel();
-        new ShowPerson(tm).setVisible(true);
+        JScrollPane sp ;
+        tablePersonen.setModel(tm);
+        sp = new JScrollPane(tablePersonen);
+        sp.setViewportView(tablePersonen); 
+        return sp;
     }
     private StammBaumBL sbl = new StammBaumBL();
 
@@ -114,6 +133,7 @@ private JTextField search = new JTextField();
     public void mouseClicked(MouseEvent e) 
     {
         search.setVisible(true);
+        this.pack();
     }
 
     @Override
@@ -131,6 +151,7 @@ private JTextField search = new JTextField();
     @Override
     public void mouseExited(MouseEvent e) {
     }
+
 
    
 }

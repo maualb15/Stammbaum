@@ -13,6 +13,7 @@ import javax.swing.table.AbstractTableModel;
 public class TableModel extends AbstractTableModel
 {
     ArrayList<Person> list= new ArrayList<Person>();
+    private int sortSpalte = 0;
 
     @Override
     public int getRowCount() 
@@ -36,7 +37,7 @@ public class TableModel extends AbstractTableModel
             case 0: return list.get(rowIndex).getFirstName();
             case 1: return list.get(rowIndex).getLastName();
             case 2: return sdf.format(list.get(rowIndex).getBirthDate());
-            case 3: if(!list.get(rowIndex).getDeathDate().equals(null)){return sdf.format(list.get(rowIndex).getDeathDate());}          
+            case 3: if(!list.get(rowIndex).getDeathDate().equals(null)){return sdf.format(list.get(rowIndex).getDeathDate());}break;
         }
         return null;
     }
@@ -55,8 +56,13 @@ public class TableModel extends AbstractTableModel
         this.fireTableDataChanged();
     }
 
+    /**
+     * Sortiert Spalte
+     * @param spalte 1 --> Nach erstellung 2 --> Geburtsdatum 3 --> Sterbedatum 4 --> Vorname 0 --> NAchname
+     */
     public void listSort(int spalte)
     {
+        sortSpalte = spalte;
         switch (spalte)
         {
 
@@ -77,13 +83,35 @@ public class TableModel extends AbstractTableModel
                                                     });
                 break;
             case 3:
-                list.sort((Person e1,Person e2)->{if(e1.getDeathDate().compareTo(e2.getDeathDate())==0)
+                list.sort((Person e1,Person e2)->{
+                                                    int help = 0;
+                                                    if(e1.getDeathDate() == null)
+                                                    {
+                                                        help--;
+                                                    }
+                                                    if(e2.getDeathDate() == null)
+                                                    {
+                                                        help++;
+                                                    }
+                                                    if(e1.getDeathDate()==null||e2.getDeathDate()==null)
+                                                    {
+                                                        return help;
+                                                    }
+                                                    if(e1.getDeathDate().compareTo(e2.getDeathDate())==0)
                                                         {
                                                             return e1.getLastName().compareTo(e2.getLastName());
                                                         }
                                                         return e1.getBirthDate().compareTo(e2.getBirthDate());
                                                     });
                                                     break;
+            case 4:
+                list.sort((Person e1,Person e2)->{if(e1.getFirstName().compareTo(e2.getFirstName())==0)
+                {
+                    return e1.getLastName().compareTo(e2.getLastName());
+                }
+                    return e1.getFirstName().compareTo(e2.getFirstName());
+                });
+                break;
             case 0:
             default:
                 list.sort((Person e1,Person e2)->{if(e1.getLastName().compareTo(e2.getLastName())==0)

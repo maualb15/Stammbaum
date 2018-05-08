@@ -53,6 +53,7 @@ public class TableModel extends AbstractTableModel
     {
         list.remove(i);
     }
+
     public void add(Person p) 
     {
         list.add(p);

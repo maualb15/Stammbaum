@@ -36,6 +36,11 @@ public class StammBaumBL
 
     }
 
+    public void remove(int i)
+    {
+        System.out.println("Test löschen");
+    }
+
     public void addPerson(Person person)
     {
         if(actualPerson == null)

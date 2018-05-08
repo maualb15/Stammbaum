@@ -49,9 +49,11 @@ public class TableModel extends AbstractTableModel
         return daten[column];
     }
 
-    public void remove(int i)
+    public int[] remove(int i)
     {
+        int[] help = list.get(i).getEquivalent();
         list.remove(i);
+        return help;
     }
 
     public void add(Person p) 

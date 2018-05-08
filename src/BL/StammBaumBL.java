@@ -36,9 +36,17 @@ public class StammBaumBL
 
     }
 
-    public void remove(int i)
-    {
-        System.out.println("Test löschen");
+    public void remove(int i) throws Exception {
+        int[] equi = tm.remove(i);
+        if(family.getFamilyEquivalent()==equi[0])
+        {
+            boolean check = family.removePerson(equi[1]);
+            if(check == false)
+            {
+                throw new Exception("Fehler im löschen");
+            }
+        }
+        throw new Exception("Fehler im löschen, fehlende Familie");
     }
 
     public void addPerson(Person person)

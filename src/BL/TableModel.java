@@ -30,7 +30,6 @@ public class TableModel extends AbstractTableModel
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) 
     { 
-        System.out.println("hier");
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         switch(columnIndex)
         {
@@ -50,6 +49,10 @@ public class TableModel extends AbstractTableModel
         return daten[column];
     }
 
+    public void remove(int i)
+    {
+        list.remove(i);
+    }
     public void add(Person p) 
     {
         list.add(p);

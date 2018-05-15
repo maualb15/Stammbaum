@@ -21,7 +21,6 @@ public class Family
 
     }
 
-
     public Family(int familyEquivalent) {
         this.familyEquivalent = familyEquivalent;
     }
@@ -35,6 +34,24 @@ public class Family
     public Person getPerson(int personequivalent)
     {
         return persons.get(personequivalent);
+    }
+
+    public Person getPerson(int[] personequivalent)
+    {
+        if(personequivalent[0]==familyEquivalent)
+        {
+            return persons.get(personequivalent[1]);
+        }
+        return null;
+    }
+
+    public int getFamilyEquivalent() {
+        return familyEquivalent;
+    }
+
+    public boolean removePerson(int equi)
+    {
+       return null != persons.remove(equi);
     }
 
     public ArrayList<Person> getPersonAtList()

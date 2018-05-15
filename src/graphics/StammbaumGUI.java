@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
@@ -54,7 +56,13 @@ private JTextField search = new JTextField();
         mbMenu.add(menu);
         
         JMenuItem miRemove = new JMenuItem("Löschen");
-        miRemove.addActionListener(e -> onRemove());
+        miRemove.addActionListener(e -> {
+            try {
+                onRemove();
+            } catch (Exception ex) {
+                Logger.getLogger(StammbaumGUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
         JMenuItem miAdd = new JMenuItem("Hinzufügen");
         miAdd.addActionListener(e -> onAdd(e));
         JMenuItem miEdit = new JMenuItem("Bearbeiten");
@@ -232,7 +240,7 @@ private JTextField search = new JTextField();
         tm.listSort(art);
     }
 
-    private void onRemove() 
+    private void onRemove() throws Exception 
     {
         int  i = tablePersonen.getSelectedRow();
         sbl.remove(i);

@@ -60,7 +60,6 @@ private JTextField search = new JTextField();
             try {
                 onRemove();
             } catch (Exception ex) {
-                Logger.getLogger(StammbaumGUI.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
         JMenuItem miAdd = new JMenuItem("Hinzufügen");
@@ -244,6 +243,7 @@ private JTextField search = new JTextField();
     {
         int  i = tablePersonen.getSelectedRow();
         sbl.remove(i);
+        repaint();
     }
     
 

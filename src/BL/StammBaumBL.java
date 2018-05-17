@@ -18,6 +18,7 @@ public class StammBaumBL
     private Family family;
     private Person actualPerson;
     private TableModel tm;
+    private SimpleDateFormat smf = new SimpleDateFormat("dd.mm.yyyy");
 
     public StammBaumBL()
     {
@@ -33,7 +34,7 @@ public class StammBaumBL
 
     public void test() throws ParseException
     {
-        new Person("a", "a", SimpleDateFormat.parse("11.11.2000"), null);
+        new Person("a", "a", smf.parse("11.11.2000"), null);
     }
 
 

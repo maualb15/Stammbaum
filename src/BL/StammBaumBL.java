@@ -9,6 +9,10 @@ import family.Family;
 import family.person.Person;
 import family.person.RelationType;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class StammBaumBL 
 {
     private Family family;
@@ -19,7 +23,19 @@ public class StammBaumBL
     {
         family = new Family(0);
         tm = new TableModel(family.getPersonAtList());
+
+        try {
+            test();
+        } catch (ParseException e) {
+            System.out.println("Fehler test");
+        }
     }
+
+    public void test() throws ParseException
+    {
+        new Person("a", "a", SimpleDateFormat.parse("11.11.2000"), null);
+    }
+
 
     public void setFamily(Family family)
     {
@@ -46,7 +62,10 @@ public class StammBaumBL
                 throw new Exception("Fehler im löschen");
             }
         }
-        throw new Exception("Fehler im löschen, fehlende Familie");
+        else
+        {
+            throw new Exception("Fehler im löschen, fehlende Familie");
+        }
     }
 
     public void addPerson(Person person)

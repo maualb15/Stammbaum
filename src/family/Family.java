@@ -27,8 +27,10 @@ public class Family
 
     public void addPerson(Person person)
     {
+
         persons.put(++personequivalent,person);
         person.setEquivalent(new int[]{familyEquivalent,personequivalent});
+
     }
 
     public Person getPerson(int personequivalent)

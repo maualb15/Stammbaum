@@ -109,7 +109,14 @@ public class AddingDLG extends JDialog
         DateFormat df = new SimpleDateFormat("dd.MM.yyyy");
        
          System.out.println(type);
-         p = new Person(tfFirstname.getText(), tfLastname.getText(), (Date)dateOfBirth.getValue(), (Date)dateOfDeath.getValue());   
+         if(cbDeath.isSelected())
+         {
+            p = new Person(tfFirstname.getText(), tfLastname.getText(), (Date)dateOfBirth.getValue(), (Date)dateOfDeath.getValue());   
+         }
+         else
+         {
+            p = new Person(tfFirstname.getText(), tfLastname.getText(), (Date)dateOfBirth.getValue(), null);   
+         }   
          sbl.addPerson(getP(), RelationType.Eltern);
 
         this.setVisible(false);

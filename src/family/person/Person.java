@@ -21,6 +21,8 @@ public class Person
     private int equivalent[];
 
 
+
+
     public Person(String firstName, String lastName, Date birthDate, Date deathDate)
     {
         this.firstName = firstName;
@@ -30,11 +32,6 @@ public class Person
         initializeRelations();
     }
 
-    public Person(String firstName, String lastName, Date birthDate, Date deathDate, int[] equivalent)
-    {
-        this(firstName,lastName,birthDate,deathDate);
-        this.equivalent = equivalent;
-    }
 
     public void initializeRelations()
     {
@@ -112,5 +109,7 @@ public class Person
         this.birthDate = birthDate;
         this.deathDate = deathDate;
     }
+
+
 }
 

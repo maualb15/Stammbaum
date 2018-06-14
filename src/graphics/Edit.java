@@ -80,7 +80,9 @@ public class Edit extends JFrame
             
             con.add(btEdit);
             con.add(btClose);
-            
+            p.setFirstName(tfFirstName.toString());
+            p.setLastName(tfLastName.toString());
+            p.setBirthDate((Date)dateOfBirth.getValue());
             this.add(con);
             this.pack();
         }
@@ -114,7 +116,10 @@ public class Edit extends JFrame
             con.add(dateOfDeath);
             con.add(btEdit);
             con.add(btClose);
-            
+            p.setFirstName(tfFirstName.toString());
+            p.setLastName(tfLastName.toString());
+            p.setBirthDate((Date)dateOfBirth.getValue());
+            p.setDeathDate((Date)dateOfDeath.getValue());
             this.add(con);
             this.pack();
         }

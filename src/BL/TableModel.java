@@ -15,6 +15,11 @@ public class TableModel extends AbstractTableModel
     ArrayList<Person> list= new ArrayList<Person>();
     private int sortSpalte = 0;
 
+    public Person getPerson(int i)
+    {
+        return list.get(i);
+    }
+
     @Override
     public int getRowCount() 
     {

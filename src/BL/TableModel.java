@@ -36,7 +36,7 @@ public class TableModel extends AbstractTableModel
             case 0: return list.get(rowIndex).getFirstName();
             case 1: return list.get(rowIndex).getLastName();
             case 2: return sdf.format(list.get(rowIndex).getBirthDate());
-            case 3: if(!list.get(rowIndex).getDeathDate().equals(null))
+            case 3: if(list.get(rowIndex).getDeathDate()!= null)
                     {
                         return sdf.format(list.get(rowIndex).getDeathDate());
                     }

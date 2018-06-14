@@ -29,8 +29,12 @@ public class Edit extends JFrame
     private Date birthDate;
     private Date deathDate;
     private Person p;
-    public Edit(String firstName, String lastName, Date birthDate, Date deathDate, Person p)
+    public Edit(Person p)
     {
+        firstName = p.getFirstName();
+        lastName = p.getLastName();
+        birthDate = p.getBirthDate();
+        deathDate = p.getDeathDate();
         this.setTitle("Eintrag bearbeiten");
         this.setPreferredSize(new Dimension(400, 300));
         this.pack();

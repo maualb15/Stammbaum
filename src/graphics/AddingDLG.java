@@ -15,8 +15,6 @@ import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,10 +26,8 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 import family.person.Person;
-import BL.TableModel;
 import family.person.RelationType;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 

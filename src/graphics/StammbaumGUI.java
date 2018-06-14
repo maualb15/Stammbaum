@@ -8,6 +8,7 @@ package graphics;
 
 import BL.StammBaumBL;
 import BL.TableModel;
+import family.person.Person;
 import family.person.RelationType;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -238,6 +239,7 @@ private JTextField search = new JTextField();
             art = 0;
         }
         tm.listSort(art);
+        
     }
 
     private void onRemove() throws Exception 
@@ -251,7 +253,9 @@ private JTextField search = new JTextField();
     {
         int i = tablePersonen.getSelectedRow();
         System.out.println(i);
-        tm.onEdit(i);
+        Person p = tm.getPerson(i);
+        Edit edit = new Edit(p);
+        tablePersonen.updateUI();
     }
     
 

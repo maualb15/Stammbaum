@@ -9,6 +9,7 @@ import family.person.Person;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JButton;
@@ -31,6 +32,7 @@ public class Edit extends JFrame
     private Person p;
     public Edit(Person p)
     {
+        this.p = p;
         firstName = p.getFirstName();
         lastName = p.getLastName();
         birthDate = p.getBirthDate();
@@ -40,6 +42,7 @@ public class Edit extends JFrame
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -55,6 +58,7 @@ public class Edit extends JFrame
     private JButton btClose = new JButton("Abbrechen");
     private void initComponent() 
     {
+        btEdit.addActionListener(e -> onClose(e));
         if(deathDate == null)
         {
             Container con = new Container();
@@ -80,9 +84,7 @@ public class Edit extends JFrame
             
             con.add(btEdit);
             con.add(btClose);
-            p.setFirstName(tfFirstName.toString());
-            p.setLastName(tfLastName.toString());
-            p.setBirthDate((Date)dateOfBirth.getValue());
+            
             this.add(con);
             this.pack();
         }
@@ -116,13 +118,24 @@ public class Edit extends JFrame
             con.add(dateOfDeath);
             con.add(btEdit);
             con.add(btClose);
-            p.setFirstName(tfFirstName.toString());
-            p.setLastName(tfLastName.toString());
-            p.setBirthDate((Date)dateOfBirth.getValue());
-            p.setDeathDate((Date)dateOfDeath.getValue());
             this.add(con);
             this.pack();
         }
+            
+
         
+    }
+
+    private void onClose(ActionEvent e) 
+    {
+        if(deathDate != null)
+        {
+            p.setDeathDate((Date)dateOfDeath.getValue());
+        }
+            p.setFirstName(tfFirstName.getText());
+            p.setLastName(tfLastName.getText());
+            p.setBirthDate((Date)dateOfBirth.getValue());
+        
+        this.setVisible(false);
     }
 }
